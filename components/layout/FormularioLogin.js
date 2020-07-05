@@ -4,7 +4,7 @@ import firebase from "../../fb";
 import Router from "next/router";
 import Error from "../ui/Error";
 import Swal from "sweetalert2";
-import Link from 'next/link'
+import Link from "next/link";
 
 //validacion
 import useValidacion from "../../hooks/useValidacion";
@@ -90,6 +90,11 @@ const FormularioLogin = () => {
     }
   }
 
+  const redireccionarRecuperarContraseña = () => {
+    $("#exampleModalCenter").modal("hide");
+    Router.push("/recuperar-contrasena")
+  };
+
   return (
     <form className="text-center" onSubmit={handleSubmit} noValidate>
       <div className="form-group">
@@ -128,7 +133,7 @@ const FormularioLogin = () => {
       />
 
       <RecuperaContraseña>
-        ¿Olvidaste tu contraseña? <Link href="recuperar-contrasena"><a>Click aquí</a></Link>
+        ¿Olvidaste tu contraseña? <a onClick={redireccionarRecuperarContraseña}>Click aquí</a>
       </RecuperaContraseña>
     </form>
   );

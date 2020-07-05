@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/core";
 
 const Pie = styled.div`
   background-color: var(--azul1);
+  padding: 0.5rem 0;
 `;
 
 const Span = styled.span`
   font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #ffff;
 `;
 
@@ -27,11 +27,11 @@ const Footer = () => {
   return (
     <footer>
     <div className="container-fluid">
-      <Pie className="row">
-        <div className="col-9 text-left pl-2">
+      <Pie className="row text-center">
+        <div className="col-12">
           <Span>Todos los derechos reservados ®</Span>
         </div>
-        <DivImagenes className="col-3">
+        <DivImagenes className="col-12">
           <img src="/static/img/fb.png" />
           <img src="/static/img/ig.png" />
           <img src="/static/img/tw.png" />

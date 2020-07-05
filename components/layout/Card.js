@@ -17,7 +17,6 @@ const CartaHead = styled.div`
     #00f260
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  padding-bottom: 1rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   height: 4rem;
@@ -37,9 +36,7 @@ const CartaBody = styled.div`
 `;
 
 const Bordes = styled.div`
-  border: 1px solid var(--lila1);
   border-radius: 1rem;
-  display: block;
   background-color: #f5f5f5;
   padding: 0.1rem !important;
 
@@ -62,7 +59,7 @@ const Card = ({ grupo }) => {
               <p>Catedra: {grupo.catedra}</p>
             </div>
             <div className="col-4">
-              <Boton href={grupo.link} className=" btn btn-outline-success float-right mt-3 mr-4">
+              <Boton href={grupo.link} className=" btn btn-outline-primary float-right mt-3 mr-4">
                 Unirme
               </Boton>
             </div>

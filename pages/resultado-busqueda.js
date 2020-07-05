@@ -53,10 +53,11 @@ const ResultadoBusqueda = () => {
 
   const [gruposDB, guardarGruposDB] = useState([]);
   const [busqueda, guardarBusqueda] = useState([]);
-  const { grupos } = useGrupos(q, tipo); //q es la facultad y se lo estoy mandando desde buscar-grupo
+  const { grupos } = useGrupos(q, tipo);
+  //q es la facultad y se lo estoy mandando desde buscar-grupo
 
-  useEffect(() => {
-    guardarGruposDB(grupos);
+  useEffect( () => {
+      guardarGruposDB(grupos);
   }, [grupos]);
 
   const { usuario } = useContext(FirebaseContext);
@@ -68,7 +69,6 @@ const ResultadoBusqueda = () => {
   const submitBuscar = (e) => {
     e.preventDefault();
     const busquedaGrupo = busqueda.toLocaleLowerCase();
-    console.log(busquedaGrupo);
     const filtrados = grupos.filter((grupo) => {
       return (
         grupo.nombre.toLocaleLowerCase().includes(busquedaGrupo) ||
@@ -94,7 +94,7 @@ const ResultadoBusqueda = () => {
                 <form className="m-3 text-center" onSubmit={submitBuscar}>
                   <input
                     className="form-control d-inline"
-                        onChange={busquedaChange}
+                    onChange={busquedaChange}
                   />
                   <InputLupa type="submit">
                     <Img src="/static/img/lupa.png" />
@@ -102,7 +102,7 @@ const ResultadoBusqueda = () => {
                 </form>
                 <div className="text-center pb-4">
                   <Link href="/buscar-grupo">
-                    <Badge className="badge">editar búsqueda &times;</Badge>
+                    <Badge className="badge">{tipo} {q} &times;</Badge>
                   </Link>
                 </div>
                 {gruposDB.map((grupo) => (
@@ -115,9 +115,10 @@ const ResultadoBusqueda = () => {
                       <a
                         target="_blank"
                         href="https://wa.me/5492995569304?text=Hola,%20en%20Finally%20está%20faltando%20un%20grupo%20de%20la%20materia:"
-                          > Por favor envíanos un WhatsApp clickeando aquí y haznos
-                            saber.
-                             
+                      >
+                        {" "}
+                        Por favor envíanos un WhatsApp clickeando aquí y haznos
+                        saber.
                       </a>
                     </b>
                   </p>

@@ -5,6 +5,11 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "redirects": [{
+        "source": "/buscar-grupo",
+        "destination": "/",
+        "type": 301
+      }]
   }
 }

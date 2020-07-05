@@ -25,6 +25,10 @@ const ImagenUsuario = styled.img`
   height: auto;
   right: 1rem;
   top: 2rem;
+
+  &:hover {
+    cursor:pointer;
+  }
 `;
 
 const Colapso = styled.div`
@@ -89,7 +93,6 @@ const Header = () => {
           <ImagenUsuario
             src="/static/img/sonreir.png"
             className="dropdown-toggle"
-            type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"

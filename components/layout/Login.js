@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import FormularioLogin from "./FormularioLogin";
 import Boton from "../ui/Boton";
-import Link from "next/link";
 import Router from "next/router";
 import firebase from "../../fb";
 
@@ -50,6 +49,7 @@ const Input = styled.input`
 
 const Login = () => {
   const redireccionarCrearCuenta = () => {
+    $("#exampleModalCenter").modal("hide");
     Router.push("/nueva-cuenta");
   };
 
@@ -65,9 +65,7 @@ const Login = () => {
       <div className="modal-dialog modal-dialog-centered" role="document">
         <ModalPrincipal className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title " id="loguearse">
-              Inicia Sesión
-            </h1>
+            <h1 className="modal-title ">Inicia Sesión</h1>
             <button
               type="button"
               className="close"
@@ -86,19 +84,18 @@ const Login = () => {
               </Boton>
             </div>
           </div>
+
           <Divisor></Divisor>
 
           <p>¿No tenes cuenta? Crea una super rápido</p>
-          <div id="crea-cuenta" className="text-center">
-            <Link href="/nueva-cuenta">
-              <Input
-                type="button"
-                bgColor="true"
-                data-dismiss="modal"
-                onClick={() => redireccionarCrearCuenta()}
-                value="Crear Cuenta"
-              />
-            </Link>
+
+          <div className="text-center mb-4">
+            <Input
+              type="submit"
+              bgColor="true"
+              value="Crear Cuenta"
+              onClick={redireccionarCrearCuenta}
+            />
           </div>
         </ModalPrincipal>
       </div>

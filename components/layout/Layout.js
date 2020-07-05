@@ -56,7 +56,7 @@ const Layout = (props) => {
       />
       <Head>
         {/* <html lagn="es" /> */}
-        <title> Finally</title>
+        <title> Finally - Grupos de estudio en WhatsApp</title>
         <link rel="shortcut icon" href="/static/img/favicon2.ico" />
         <link
           rel="stylesheet"

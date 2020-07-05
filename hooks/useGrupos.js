@@ -3,7 +3,6 @@ import { FirebaseContext } from "../fb";
 
 const useGrupos = (facultad, tipo) => {
     const [grupos, guardarGrupos] = useState([]);
-
   const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
@@ -11,7 +10,7 @@ const useGrupos = (facultad, tipo) => {
       firebase.db.collection(`${tipo}-${facultad}`).onSnapshot(manejarSnapshot);
     };
     obtenerGrupos();
-  }, []);
+  }, [tipo]);
 
   function manejarSnapshot(snapshot) {
     const grupos = snapshot.docs.map((doc) => {
@@ -21,7 +20,6 @@ const useGrupos = (facultad, tipo) => {
       };
     });
       
-      console.log(grupos)
 
     guardarGrupos(grupos);
   }

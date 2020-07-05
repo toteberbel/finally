@@ -64,7 +64,11 @@ const Busqueda = () => {
       id: 1,
       nombre: "FAEA",
     },
-    { id: 2, nombre: "FATU" },
+    {
+      id: 2,
+      nombre: "FATU",
+    },
+    
     {
       id: 3,
       nombre: "FACE",
@@ -129,12 +133,13 @@ const Busqueda = () => {
                       <CardBody className="card card-body">
                         <div>
                           <label>Facultad:</label>
-                          <select onChange={handleSelect}>
-                            {facultades.map((facultad) => (
+                            <select onChange={handleSelect}>
+                              <option key="1">FAEA</option>
+                            {/* {facultades.map((facultad) => (
                               <option key={facultad.id}>
                                 {facultad.nombre}
                               </option>
-                            ))}
+                            ))} */}
                           </select>
                         </div>
                         <Boton
