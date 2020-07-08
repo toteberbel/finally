@@ -17,17 +17,21 @@ const TituloHeader = styled.a`
 const ContenedorHeader = styled.div`
   background-color: var(--azul1);
   text-align: center;
+  i{
+    color: var(--amarillo1);
+    margin-top: 2.5rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const ImagenUsuario = styled.img`
-  position: absolute;
+margin-top: 2rem;
   max-width: 2.5rem;
   height: auto;
-  right: 1rem;
-  top: 2rem;
-
   &:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
 `;
 
@@ -79,20 +83,28 @@ const Toast = Swal.mixin({
   },
 });
 
+
 const Header = () => {
   const { usuario, firebase } = useContext(FirebaseContext);
+
+  const clickMenu = (e) => {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  };
 
   return (
     <div className="container-fluid">
       <ContenedorHeader className="row text-center">
         <div className="col-12">
+          <i className="fas fa-bars fa-lg float-left" id="menu-toggle"
+            onClick={clickMenu}></i>
           <Link href="/">
             <TituloHeader>finally</TituloHeader>
           </Link>
 
           <ImagenUsuario
             src="/static/img/sonreir.png"
-            className="dropdown-toggle"
+            className="dropdown-toggle float-right"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"

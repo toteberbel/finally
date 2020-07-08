@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 
 const Layout = (props) => {
+
   return (
     <>
       <Global
@@ -85,9 +86,66 @@ const Layout = (props) => {
           crossOrigin="anonymous"
         ></script>
         <link href="/static/css/app.css" rel="stylesheet" />
+        {/* Anmiaciones */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+          integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+          crossorigin="anonymous"
+        />
       </Head>
       <Header />
-      <main>{props.children}</main>
+      <div className="d-flex" id="wrapper">
+        <div className="bg-light border-right" id="sidebar-wrapper">
+          <div className="list-group list-group-flush">
+            <a
+              href="#"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Dashboard
+            </a>
+            <a
+              href="#"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Shortcuts
+            </a>
+            <a
+              href="#"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Overview
+            </a>
+            <a
+              href="#"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Events
+            </a>
+            <a
+              href="#"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Profile
+            </a>
+            <a
+              href="#"
+              className="list-group-item list-group-item-action bg-light"
+            >
+              Status
+            </a>
+          </div>
+        </div>
+
+        <div id="page-content-wrapper">
+          <main>{props.children}</main>
+        </div>
+      </div>
+
       <Footer />
     </>
   );

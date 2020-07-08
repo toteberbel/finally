@@ -13,14 +13,11 @@ const Span = styled.span`
 `;
 
 const DivImagenes = styled.div`
-  img {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin: 0 0.5rem;
-    &:last-of-type {
-      margin-right: 0;
-    }
-  }
+i {
+  color: #ffff;
+  margin: 0 6px;
+}
+
 `;
 
 const Footer = () => {
@@ -31,10 +28,10 @@ const Footer = () => {
         <div className="col-12">
           <Span>Todos los derechos reservados ®</Span>
         </div>
-        <DivImagenes className="col-12">
-          <img src="/static/img/fb.png" />
-          <img src="/static/img/ig.png" />
-          <img src="/static/img/tw.png" />
+          <DivImagenes className="col-12">
+            <i className="fab fa-facebook-square"></i>
+            <i className="fab fa-twitter-square"></i>
+            <i className="fab fa-instagram-square"></i>
         </DivImagenes>
       </Pie>
       </div>

@@ -56,8 +56,8 @@ const ResultadoBusqueda = () => {
   const { grupos } = useGrupos(q, tipo);
   //q es la facultad y se lo estoy mandando desde buscar-grupo
 
-  useEffect( () => {
-      guardarGruposDB(grupos);
+  useEffect(() => {
+    guardarGruposDB(grupos);
   }, [grupos]);
 
   const { usuario } = useContext(FirebaseContext);
@@ -83,13 +83,15 @@ const ResultadoBusqueda = () => {
     <Layout>
       <div className="container-fluid">
         {!usuario ? (
-          <h1>Cargando...</h1>
+          <ContenedorPrincipal className="row">
+            <h1>Cargando...</h1>
+          </ContenedorPrincipal>
         ) : (
           <ContenedorPrincipal className="row ">
             {grupos.length === 0 ? (
               <Spinner />
             ) : (
-              <div className="col mt-5">
+              <div className="col mt-5 ">
                 <h1>Resultados:</h1>
                 <form className="m-3 text-center" onSubmit={submitBuscar}>
                   <input
@@ -102,12 +104,17 @@ const ResultadoBusqueda = () => {
                 </form>
                 <div className="text-center pb-4">
                   <Link href="/buscar-grupo">
-                    <Badge className="badge">{tipo} {q} &times;</Badge>
+                    <Badge className="badge">
+                      {tipo} {q} &times;
+                    </Badge>
                   </Link>
                 </div>
-                {gruposDB.map((grupo) => (
-                  <Card key={grupo.id} grupo={grupo} />
-                ))}
+                <div className="animate__animated animate__fadeInRight">
+                  {gruposDB.map((grupo) => (
+                    <Card key={grupo.id} grupo={grupo} />
+                  ))}
+                </div>
+
                 <div className="text-center m-5">
                   <p>
                     ¿No encontras el grupo que buscabas?

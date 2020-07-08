@@ -10,7 +10,6 @@ const ModalPrincipal = styled.div`
   border-radius: 2rem;
 
   h1 {
-    margin-left: 14vh;
     color: var(--azul1);
     font-size: xx-large;
   }
@@ -64,18 +63,8 @@ const Login = () => {
     >
       <div className="modal-dialog modal-dialog-centered" role="document">
         <ModalPrincipal className="modal-content">
-          <div className="modal-header">
-            <h1 className="modal-title ">Inicia Sesión</h1>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
           <div className="modal-body text-center">
+            <h1>Inicia Sesión</h1>
             <FormularioLogin />
             <div id="inicia-google">
               <Boton onClick={firebase.loginGoogle}>
