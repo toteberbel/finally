@@ -19,13 +19,11 @@ class Firebase {
     }
 
     //Registra un usuario
-    async registrar(email, password, nombre, facultad, numLegajo) {
+    async registrar(email, password, nombre) {
         const nuevoUsuario = await this.auth.createUserWithEmailAndPassword(email, password);
 
         return await nuevoUsuario.user.updateProfile({
             displayName: nombre,
-            numLegajo,
-            facultad,
         });
     }
 
@@ -63,6 +61,39 @@ class Firebase {
                 text: "Ha ocurrido un error, vuelve a intentar más tarde"
             })
         });
+    }
+
+    //Borrar anuncio
+    borrarAnuncio(id) {
+        Swal.fire({
+            title: 'Estás seguro que quieres eliminar este anuncio?',
+            text: "No podrás revertir esta acción",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.value) {
+                try {
+                    await firebase.db.collection('anuncios').doc(id).delete();
+
+                    Swal.fire(
+                        'Eliminado!',
+                        'Tu anuncio ha sido eliminado!',
+                        'success'
+                    )
+                } catch (error) {
+                    Swal.fire(
+                        'Ops!',
+                        'Ha ocurrido un error, intenta nuevamente',
+                        'error'
+                    )
+                }
+
+            }
+        })
     }
 
 }

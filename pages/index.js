@@ -4,11 +4,9 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import Boton from "../components/ui/Boton";
 import Login from "../components/layout/Login";
-import Sidebar from '../components/layout/Sidebar';
 import { FirebaseContext } from "../fb/index";
 
 const FirstContenedor = styled.div`
-  background-color: #eaeaea;
   background-image: url("/static/img/chicaestudia2.png");
   min-height: 44vh;
 
@@ -39,7 +37,6 @@ const FirstContenedor = styled.div`
 `;
 
 const SecondContenedor = styled.div`
-  background-color: #eaeaea;
   background-image: url("/static/img/celumsg2.png");
   min-height: 45vh;
   @media (max-width: 450px) {
@@ -48,7 +45,7 @@ const SecondContenedor = styled.div`
     background-position: right;
   }
   @media (min-width: 450px) {
-    background-size: 35rem 34rem;
+    background-size: 30rem 29rem;
     background-repeat: no-repeat;
     background-position: bottom right;
   }
@@ -92,19 +89,23 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="container-fluid">
-        <Login />
+      <div className="container-fluid principalBody">
+          <Login />
+
         <FirstContenedor className="row pb-2">
           <Titulo className="col-12 mt-4 animate__animated animate__fadeInDown">
             Finales y parciales más amenos
           </Titulo>
           <div className="col-12 justify-content-right">
             <div className="row">
-              <div className="col-md-2 col-lg-4"></div>
-              <div className="col-md-10 col-lg-8 text-right animate__animated animate__fadeInDown">
+              <div className="col-2 col-lg-4"></div>
+              <div className="col-10 col-lg-8 text-right animate__animated animate__fadeInDown mb-5">
                 <Parrafo>
                   Encuentra personas que rindan el mismo final/parcial que vos o
                   que cursen en la misma cátedra.
+                </Parrafo>
+                <Parrafo>
+                  ¿Necesitas clases de apoyo? Entonces busca a tu profesor ideal.
                 </Parrafo>
                 <div className="mt-5">
                   {usuario ? (
@@ -116,7 +117,7 @@ export default function Home() {
                         </Boton>
                       </Link>
                       <br></br>
-                      <Link href="/buscar-grupo">
+                      <Link href="/buscar-profesor">
                         <Boton
                           className="btn mt-3"
                           bgColor="true"
@@ -139,17 +140,16 @@ export default function Home() {
                         <i className="fab fa-whatsapp fa-lg"></i> Busca tu grupo
                       </Boton>
                       <br></br>
-                      <Boton
-                        className="btn mb-5"
-                        bgColor="true"
-                        type="button"
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#exampleModalCenter"
-                      >
-                        <i className="fas fa-chalkboard-teacher "></i>Encuentra
-                        a tu profe ideal
-                      </Boton>
+                      <Link href="/buscar-profesor">
+                        <Boton
+                          className="btn mt-3"
+                          bgColor="true"
+                          type="button"
+                        >
+                          <i className="fas fa-chalkboard-teacher "></i>
+                          Encuentra a tu profe ideal
+                        </Boton>
+                      </Link>
                     </>
                   )}
                 </div>

@@ -9,13 +9,17 @@ import { useRouter } from "next/router";
 import useGrupos from "../hooks/useGrupos";
 
 const ContenedorPrincipal = styled.div`
-  background-color: var(--verde1);
-
   h1 {
     font-size: xx-large;
     color: var(--azul1);
     text-align: center;
     margin-bottom: 0.5rem !important;
+  }
+  i{
+    color: var(--amarillo1);
+    &:hover{
+      cursor: pointer;
+    }
   }
 
   min-height: 88.5vh;
@@ -30,20 +34,7 @@ const Badge = styled.a`
   &:hover {
     cursor: pointer;
   }
-`;
-
-const InputLupa = styled.button`
-  margin: 0 0 8px 6px;
-  border: 0px transparent;
-  border-radius: 1.5rem;
-  font-size: small;
-  background-color: transparent;
-`;
-
-const Img = styled.img`
-  height: 2.3rem;
-  width: 2.3rem;
-`;
+`
 
 const ResultadoBusqueda = () => {
   const router = useRouter();
@@ -53,6 +44,7 @@ const ResultadoBusqueda = () => {
 
   const [gruposDB, guardarGruposDB] = useState([]);
   const [busqueda, guardarBusqueda] = useState([]);
+  const [sinGrupos, guardarSinGrupos] = useState(false); //Si no hay grupso segun la busqueda
   const { grupos } = useGrupos(q, tipo);
   //q es la facultad y se lo estoy mandando desde buscar-grupo
 
@@ -68,13 +60,19 @@ const ResultadoBusqueda = () => {
 
   const submitBuscar = (e) => {
     e.preventDefault();
-    const busquedaGrupo = busqueda.toLocaleLowerCase();
+    const busquedaGrupo = busqueda.toLocaleLowerCase().trim();
     const filtrados = grupos.filter((grupo) => {
       return (
         grupo.nombre.toLocaleLowerCase().includes(busquedaGrupo) ||
         grupo.nombre.toLocaleLowerCase().includes(busquedaGrupo)
       );
     });
+
+    if (filtrados.length === 0) {
+      guardarSinGrupos(true);
+    } else {
+      guardarSinGrupos(false);
+    }
 
     guardarGruposDB(filtrados);
   };
@@ -98,9 +96,10 @@ const ResultadoBusqueda = () => {
                     className="form-control d-inline"
                     onChange={busquedaChange}
                   />
-                  <InputLupa type="submit">
-                    <Img src="/static/img/lupa.png" />
-                  </InputLupa>
+                  <i
+                    onClick={submitBuscar}
+                    className="fas fa-search fa-lg ml-2"
+                  ></i>
                 </form>
                 <div className="text-center pb-4">
                   <Link href="/buscar-grupo">
@@ -114,6 +113,16 @@ const ResultadoBusqueda = () => {
                     <Card key={grupo.id} grupo={grupo} />
                   ))}
                 </div>
+                {sinGrupos && (
+                  <div className="text-center">
+                    <h1 className="mb-1">
+                      No encontramos grupos según tu búsqueda :(
+                    </h1>
+                    <small>
+                      Prueba con otras palabras para mejorar tu búsqueda.
+                    </small>
+                  </div>
+                )}
 
                 <div className="text-center m-5">
                   <p>
@@ -124,8 +133,8 @@ const ResultadoBusqueda = () => {
                         href="https://wa.me/5492995569304?text=Hola,%20en%20Finally%20está%20faltando%20un%20grupo%20de%20la%20materia:"
                       >
                         {" "}
-                        Por favor envíanos un WhatsApp clickeando aquí y haznos
-                        saber.
+                        Por favor haz click aquí para enviarnos un WhatsApp y
+                        hacernos saber.
                       </a>
                     </b>
                   </p>

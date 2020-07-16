@@ -27,11 +27,12 @@ const Input = styled.input`
   }
 `;
 
-const Icono = styled.img`
-  width: 2rem;
-  height: 2rem;
-  margin-right: 1.2rem;
+const Form = styled.form`
+  i{
+    color: #474747
+  }
 `;
+
 
 const RecuperaContraseña = styled.p`
   font-size: small !important;
@@ -83,7 +84,6 @@ const FormularioLogin = () => {
         icon: "success",
         title: "Ha iniciado sesión correctamente",
       });
-      Router.push("/buscar-grupo");
     } catch (error) {
       console.log("Hubo un error al autenticar el usuario", error.message);
       guardarError(error.message);
@@ -92,13 +92,13 @@ const FormularioLogin = () => {
 
   const redireccionarRecuperarContraseña = () => {
     $("#exampleModalCenter").modal("hide");
-    Router.push("/recuperar-contrasena")
+    Router.push("/recuperar-contrasena");
   };
 
   return (
-    <form className="text-center" onSubmit={handleSubmit} noValidate>
+    <Form className="text-center" onSubmit={handleSubmit} noValidate>
       <div className="form-group">
-        <Icono src="/static/img/user.png" />
+        <i className="fas fa-user fa-lg mr-3"></i>
         <input
           type="email"
           className="form-control"
@@ -112,7 +112,7 @@ const FormularioLogin = () => {
       </div>
       {errores.email && <Error msg={errores.email} />}
       <div className="form-group">
-        <Icono src="/static/img/password.png" />
+        <i className="fas fa-lock fa-lg mr-3"></i>
         <input
           type="password"
           className="form-control"
@@ -133,9 +133,10 @@ const FormularioLogin = () => {
       />
 
       <RecuperaContraseña>
-        ¿Olvidaste tu contraseña? <a onClick={redireccionarRecuperarContraseña}>Click aquí</a>
+        ¿Olvidaste tu contraseña?{" "}
+        <a onClick={redireccionarRecuperarContraseña}>Click aquí</a>
       </RecuperaContraseña>
-    </form>
+    </Form>
   );
 };
 

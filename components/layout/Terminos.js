@@ -48,10 +48,10 @@ const Terminos = () => {
                 Para usar nuestra página web y / o recibir nuestros servicios,
                 <b>
                   {" "}
-                  debes ser estudiante registrado en la Universidad Nacional del
-                  Comahue
+                  debes ser profesor y/o estudiante registrado en la Universidad Nacional del
+                  Comahue,
                 </b>{" "}
-                y poseer la autoridad legal, el derecho y la libertad para
+                poseer la autoridad legal, el derecho y la libertad para
                 participar en estos Términos como un acuerdo vinculante. No
                 tienes permitido utilizar esta página web y / o recibir
                 servicios si hacerlo está prohibido en tu país o en virtud de

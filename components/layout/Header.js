@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { FirebaseContext } from "../../fb";
@@ -17,7 +17,7 @@ const TituloHeader = styled.a`
 const ContenedorHeader = styled.div`
   background-color: var(--azul1);
   text-align: center;
-  i{
+  i {
     color: var(--amarillo1);
     margin-top: 2.5rem;
     &:hover {
@@ -27,7 +27,7 @@ const ContenedorHeader = styled.div`
 `;
 
 const ImagenUsuario = styled.img`
-margin-top: 2rem;
+  margin-top: 2rem;
   max-width: 2.5rem;
   height: auto;
   &:hover {
@@ -54,12 +54,16 @@ const Colapso = styled.div`
   a {
     color: #ffff;
     background-color: var(--azul1);
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    margin-bottom: 1px;
     font-size: 1.5rem;
     text-align: center;
     &:hover {
       cursor: pointer;
+    }
+    &:last-of-type {
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      margin: 0;
     }
   }
 
@@ -83,36 +87,64 @@ const Toast = Swal.mixin({
   },
 });
 
-
-const Header = () => {
+const Header = ({ menu }) => {
   const { usuario, firebase } = useContext(FirebaseContext);
+  const [menuabierto, guardarMenuAbierto] = useState(false);
+
+  //Chequear el tamaño de la pantalla
+  var anchoPantalla = useRef(null);
+
+  useEffect(() => {
+    var width = anchoPantalla.current.clientWidth;
+
+    if (width > 770) {
+      guardarMenuAbierto(true);
+    } else {
+      guardarMenuAbierto(false);
+    }
+  }, [anchoPantalla]);
 
   const clickMenu = (e) => {
     e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
+    if (menuabierto) {
+      guardarMenuAbierto(false);
+    } else {
+      guardarMenuAbierto(true);
+    }
+    menu.current.classList.toggle("toggled");
   };
 
   return (
     <div className="container-fluid">
-      <ContenedorHeader className="row text-center">
+      <ContenedorHeader ref={anchoPantalla} className="row text-center">
         <div className="col-12">
-          <i className="fas fa-bars fa-lg float-left" id="menu-toggle"
-            onClick={clickMenu}></i>
+          {menuabierto ? (
+            <i
+              className="fas fa-times fa-lg float-left"
+              id="menu-toggle"
+              onClick={clickMenu}
+            ></i>
+          ) : (
+            <i
+              className="fas fa-bars fa-lg float-left"
+              id="menu-toggle"
+              onClick={clickMenu}
+            ></i>
+          )}
           <Link href="/">
             <TituloHeader>finally</TituloHeader>
           </Link>
 
-          <ImagenUsuario
-            src="/static/img/sonreir.png"
-            className="dropdown-toggle float-right"
-            id="dropdownMenuButton"
+          <i
+            className="fas fa-user-circle fa-lg float-right mb-1"
+            id="menuPerfil"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          />
+          ></i>
           <Colapso
             className="dropdown-menu shadow"
-            aria-labelledby="dropdownMenuButton"
+            aria-labelledby="menuPerfil"
           >
             {usuario && (
               <p>
@@ -130,20 +162,25 @@ const Header = () => {
                 Iniciar Sesión
               </a>
             ) : (
-              <Link href="/">
-                <a
-                  className="dropdown-item text-center"
-                  onClick={() => (
-                    firebase.cerrarSesion(),
-                    Toast.fire({
-                      icon: "success",
-                      title: "Se ha cerrado su sesión",
-                    })
-                  )}
-                >
-                  Cerrar Sesión
-                </a>
-              </Link>
+              <>
+                <Link href="/mis-anuncios">
+                  <a className="dropdown-item text-center">Mis anuncios</a>
+                </Link>
+                <Link href="/">
+                  <a
+                    className="dropdown-item text-center"
+                    onClick={() => (
+                      firebase.cerrarSesion(),
+                      Toast.fire({
+                        icon: "success",
+                        title: "Se ha cerrado su sesión",
+                      })
+                    )}
+                  >
+                    Cerrar Sesión
+                  </a>
+                </Link>
+              </>
             )}
           </Colapso>
         </div>

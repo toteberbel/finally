@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useRef, useContext } from "react";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
 import Footer from "./Footer";
+import Login from "./Login";
 import Header from "./Header";
+import Container from "./Container";
+import Link from "next/link";
+import { FirebaseContext } from "../../fb";
+
 
 const Layout = (props) => {
+  let menu = useRef(null);
+
+  const { usuario } = useContext(FirebaseContext);
 
   return (
     <>
@@ -29,6 +37,7 @@ const Layout = (props) => {
             font-size: 1.6rem; /* Esto sería igual a 16px */
             line-height: 1.5;
             font-family: "Montserrat", sans-serif;
+            background-color: #eaeaea;
           }
           h1,
           h2,
@@ -41,18 +50,12 @@ const Layout = (props) => {
             font-family: "Quicksand", sans-serif;
             font-weight: 300;
           }
-          /* h3 {
-            font-family: "PT Sans", sans-serif;
-          } */
           a {
             text-decoration: none;
           }
           img {
             width: 100%;
           }
-          /* p {
-            font-family: "Montserrat", sans-serif;
-          } */
         `}
       />
       <Head>
@@ -95,55 +98,81 @@ const Layout = (props) => {
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
           integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         />
       </Head>
-      <Header />
-      <div className="d-flex" id="wrapper">
-        <div className="bg-light border-right" id="sidebar-wrapper">
+      <Header menu={menu} />
+      <div className="d-flex" id="wrapper" ref={menu}>
+        <div id="sidebar-wrapper">
           <div className="list-group list-group-flush">
+            <Link href="/">
+              <a className="list-group-item itemSidebar list-group-item-action">
+                Home
+              </a>
+            </Link>
+
+            {usuario ? (
+              <>
+                <Link href="buscar-grupo">
+                  <a className="list-group-item itemSidebar list-group-item-action ">
+                    Grupos de WhatsApp
+                  </a>
+                </Link>
+                <Link href="soy-profesor">
+                  <a className="list-group-item itemSidebar list-group-item-action ">
+                    Soy profesor
+                  </a>
+                </Link>
+              </>
+            ) : (
+              <>
+                <a
+                  href="!#"
+                  className="list-group-item itemSidebar list-group-item-action "
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  Grupos de WhatsApp
+                </a>
+                <a
+                  href="!#"
+                  className="list-group-item itemSidebar list-group-item-action "
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  Soy profesor
+                </a>
+              </>
+            )}
+
+            <Link href="buscar-profesor">
+              <a className="list-group-item itemSidebar list-group-item-action ">
+                Buscar profesor
+              </a>
+            </Link>
+
+            <Link href="/contacto">
+              <a
+                className="list-group-item itemSidebar list-group-item-action"
+              >
+                Contacto
+              </a>
+            </Link>
+
+            {/* 
             <a
               href="#"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Dashboard
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Shortcuts
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Overview
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Events
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action bg-light"
-            >
-              Profile
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action bg-light"
+              className="list-group-item list-group-item-action"
             >
               Status
-            </a>
+            </a> */}
           </div>
         </div>
 
-        <div id="page-content-wrapper">
+        <Container id="page-content-wrapper bg-light">
+          {/* <Login /> */}
           <main>{props.children}</main>
-        </div>
+        </Container>
       </div>
 
       <Footer />

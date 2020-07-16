@@ -8,7 +8,7 @@ import Router from "next/router";
 
 const ContenedorPrincipal = styled.div`
   background-color: #eaeaea;
-  min-height: 89vh;
+  min-height: 100vh;
   h1 {
     color: var(--azul1);
     font-size: xx-large;

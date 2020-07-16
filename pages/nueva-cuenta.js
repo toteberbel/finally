@@ -6,47 +6,11 @@ import Error from "../components/ui/Error";
 import Layout from "../components/layout/Layout";
 import Terminos from "../components/layout/Terminos";
 import Login from "../components/layout/Login";
-
+import Swal from "sweetalert2";
 
 //validacion
 import useValidacion from "../hooks/useValidacion";
 import validarCrearCuenta from "../validacion/validarCrearCuenta";
-
-import Swal from "sweetalert2";
-const Toast = Swal.mixin({
-  toast: true,
-  position: "top-end",
-  showConfirmButton: false,
-  timer: 2000,
-  timerProgressBar: true,
-  onOpen: (toast) => {
-    toast.addEventListener("mouseenter", Swal.stopTimer);
-    toast.addEventListener("mouseleave", Swal.resumeTimer);
-  },
-});
-
-const IconoUser = styled.img`
-  width: auto;
-  height: 2.3rem;
-  margin-right: 1.2rem;
-`;
-const IconoPass = styled.img`
-  width: auto;
-  height: 2.8rem;
-  margin-right: 1.2rem;
-`;
-
-const IconoMail = styled.img`
-  width: auto;
-  height: 2rem;
-  margin-right: 1.2rem;
-`;
-
-const IconoHat = styled.img`
-  width: auto;
-  height: 2.5rem;
-  margin-right: 1.2rem;
-`;
 
 const ContenedorPrincipal = styled.div`
   background-color: #ffff;
@@ -63,6 +27,9 @@ const ContenedorPrincipal = styled.div`
   input {
     display: inline-block;
   }
+  i {
+    color: var(--azul1);
+  }
 `;
 
 const Titulo = styled.div`
@@ -72,15 +39,15 @@ const Titulo = styled.div`
   font-weight: 700;
 `;
 
-const LegajoGroup = styled.div`
-  input {
-    display: inline-block;
-    width: 33%;
-  }
-  span {
-    font-size: 2rem;
-  }
-`;
+// const LegajoGroup = styled.div`
+//   input {
+//     display: inline-block;
+//     width: 33%;
+//   }
+//   span {
+//     font-size: 2rem;
+//   }
+// `;
 const Input = styled.input`
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
@@ -101,7 +68,7 @@ const Input = styled.input`
 const STATE_INICIAL = {
   nombre: "",
   facultad: "",
-  numLegajo: "",
+  // numLegajo: "",
   email: "",
   password: "",
   confirmacionPassword: "",
@@ -126,15 +93,13 @@ const FormularioNuevaCuenta = () => {
     acepta,
     confirmacionPassword,
     facultad,
-    numLegajo,
+    // numLegajo,
   } = valores;
 
   async function crearCuenta() {
     try {
-      await firebase.registrar(email, password, nombre, facultad, numLegajo);
-      firebase.db
-        .collection("usuarios")
-        .add({ nombre, facultad, numLegajo, email });
+      await firebase.registrar(email, password, nombre);
+      firebase.db.collection("usuarios").add({ nombre, email });
 
       Router.push("/");
       Swal.fire({
@@ -175,7 +140,8 @@ const FormularioNuevaCuenta = () => {
                 <div className="form-group">
                   <label htmlFor="nombre">Nombre y apellido</label>
 
-                  <IconoUser src="/static/img/user.png" />
+                  {/* <IconoUser src="/static/img/user.png" /> */}
+                  <i className="fas fa-user mr-3 fa-lg"></i>
                   <input
                     type="text"
                     className="form-control"
@@ -187,7 +153,7 @@ const FormularioNuevaCuenta = () => {
                   />
                   {errores.nombre && <Error msg={errores.nombre} />}
                 </div>
-                <LegajoGroup className="form-group">
+                {/* <LegajoGroup className="form-group">
                   <label htmlFor="facultad">Legajo</label>
                   <IconoHat src="/static/img/hat.png" />
                   <input
@@ -200,7 +166,7 @@ const FormularioNuevaCuenta = () => {
                     onChange={handleChange}
                   />
                   <span> / </span>
-                  <input
+                   <input
                     type="number"
                     className="form-control"
                     id="numLegajo"
@@ -214,11 +180,10 @@ const FormularioNuevaCuenta = () => {
                     Por ejemplo: FAEA / 0101
                   </small>
                   {errores.facultad && <Error msg={errores.facultad} />}
-                </LegajoGroup>
+                </LegajoGroup> */}
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <IconoMail src="/static/img/email.png" />
-
+                  <i class="fas fa-at fa-lg mr-3"></i>
                   <input
                     type="email"
                     className="form-control"
@@ -236,7 +201,7 @@ const FormularioNuevaCuenta = () => {
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Contraseña</label>
-                  <IconoPass src="/static/img/password.png" />
+                  <i className="fas fa-lock fa-lg mr-3"></i>
                   <input
                     type="password"
                     className="form-control"
@@ -254,6 +219,9 @@ const FormularioNuevaCuenta = () => {
                     value={confirmacionPassword}
                     onChange={handleChange}
                   />
+                  <small className="form-text text-muted">
+                    * Tu contraseña debe tener mínimo 6 caracteres
+                  </small>
                   {errores.password && <Error msg={errores.password} />}
                 </div>
                 <div className="form-group d-block mt-4">

@@ -5,6 +5,10 @@ const Boton = styled.a `
     font-weight: 700;
     border: 1px solid #0B3C5D;
     padding: .8rem 2rem;
+        border-radius: 2rem;
+            &:hover {
+        cursor: pointer;
+    }
 
     background-color: ${props => props.bgColor ? "#0B3C5D" : 'transparent'};
     color: ${props => props.bgColor ? '#eaeaea' : '#0B3C5D'} !important;

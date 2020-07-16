@@ -22,9 +22,9 @@ export default function validarCrearCuenta(valores) {
         errores.noRepitePassword = "Los password no coinciden";
     }
 
-    if (!valores.facultad || !valores.numLegajo) {
-        errores.facultad = "Debe ingresar un legajo válido";
-    }
+    // if (!valores.facultad || !valores.numLegajo) {
+    //     errores.facultad = "Debe ingresar un legajo válido";
+    // }
 
     if (!valores.acepta) {
         errores.acepta = "Debe aceptar los términos y condiciones";

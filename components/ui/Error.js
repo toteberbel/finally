@@ -6,7 +6,7 @@ const Alerta = styled.div`
     span{
         font-size: small;
         padding: .4rem;
-        border-radius: 1rem;
+        border-radius: .3rem;
         font-weight: bold;
         color: red;
     }
@@ -14,8 +14,8 @@ const Alerta = styled.div`
 
 const Error = ({msg}) => {
     return (
-        <Alerta>
-            <span>{msg}</span>
+        <Alerta className="animate__animated animate__headShake">
+            <span className="alert alert-danger " role="alert">{msg}</span>
         </Alerta>
      );
 }
