@@ -64,11 +64,11 @@ const Login = () => {
       <div className="modal-dialog modal-dialog-centered" role="document">
         <ModalPrincipal className="modal-content">
           <div className="modal-body text-center">
-            <h1>Inicia Sesión</h1>
+            <h1 className="mb-0">Inicia Sesión</h1>
             <FormularioLogin />
             <div id="inicia-google">
               <Boton onClick={firebase.loginGoogle}>
-                <img src="/static/img/google.png" />
+                <img src="/static/img/google.png" alt="Logo google"/>
                 Iniciar Sesión con Google
               </Boton>
             </div>

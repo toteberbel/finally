@@ -140,7 +140,6 @@ const FormularioNuevaCuenta = () => {
                 <div className="form-group">
                   <label htmlFor="nombre">Nombre y apellido</label>
 
-                  {/* <IconoUser src="/static/img/user.png" /> */}
                   <i className="fas fa-user mr-3 fa-lg"></i>
                   <input
                     type="text"

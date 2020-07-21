@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 import { FirebaseContext } from "../../fb";
 import Swal from "sweetalert2";
+import Login from "./Login";
 
 const TituloHeader = styled.a`
   font-family: "Lobster", cursive;
@@ -26,19 +27,10 @@ const ContenedorHeader = styled.div`
   }
 `;
 
-const ImagenUsuario = styled.img`
-  margin-top: 2rem;
-  max-width: 2.5rem;
-  height: auto;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const Colapso = styled.div`
   color: var(--azu1);
   font-size: 2rem;
-  font-weight: 700;
+
   border: 1px solid var(--amarillo1);
   border-radius: 0.5rem;
   p {
@@ -53,17 +45,19 @@ const Colapso = styled.div`
 
   a {
     color: #ffff;
-    background-color: var(--azul1);
     margin-bottom: 1px;
     font-size: 1.5rem;
     text-align: center;
+    background-color: var(--amarillo1);
     &:hover {
       cursor: pointer;
+      background-color: #ffff !important;
     }
     &:last-of-type {
       border-bottom-left-radius: 0.5rem;
       border-bottom-right-radius: 0.5rem;
       margin: 0;
+      background-color: var(--azul1);
     }
   }
 
@@ -73,6 +67,15 @@ const Divisor = styled.div`
   height: 1.5px;
   background-color: #eaeaea;
   margin-top: 1rem;
+`;
+const PerfilBoton = styled.button`
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 `;
 
 const Toast = Swal.mixin({
@@ -117,6 +120,7 @@ const Header = ({ menu }) => {
   return (
     <div className="container-fluid">
       <ContenedorHeader ref={anchoPantalla} className="row text-center">
+        <Login />
         <div className="col-12">
           {menuabierto ? (
             <i
@@ -135,13 +139,16 @@ const Header = ({ menu }) => {
             <TituloHeader>finally</TituloHeader>
           </Link>
 
-          <i
-            className="fas fa-user-circle fa-lg float-right mb-1"
+          <PerfilBoton
             id="menuPerfil"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          ></i>
+            type="button"
+            className="float-right mb-1"
+          >
+            <i className="fas fa-user-circle fa-lg "></i>
+          </PerfilBoton>
           <Colapso
             className="dropdown-menu shadow"
             aria-labelledby="menuPerfil"

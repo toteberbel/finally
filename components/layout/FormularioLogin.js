@@ -4,7 +4,6 @@ import firebase from "../../fb";
 import Router from "next/router";
 import Error from "../ui/Error";
 import Swal from "sweetalert2";
-import Link from "next/link";
 
 //validacion
 import useValidacion from "../../hooks/useValidacion";
@@ -97,14 +96,14 @@ const FormularioLogin = () => {
 
   return (
     <Form className="text-center" onSubmit={handleSubmit} noValidate>
-      <div className="form-group">
+      <div className="form-group mb-0">
         <i className="fas fa-user fa-lg mr-3"></i>
         <input
           type="email"
           className="form-control"
           id="emailInicio"
           aria-describedby="emailHelp"
-          placeholder="Ingresá un email"
+          placeholder="Ingresa un email"
           name="email"
           value={email}
           onChange={handleChange}
@@ -117,7 +116,7 @@ const FormularioLogin = () => {
           type="password"
           className="form-control"
           id="passwordInicio"
-          placeholder="Ingresá tu contraseña"
+          placeholder="Ingresa tu contraseña"
           name="password"
           value={password}
           onChange={handleChange}

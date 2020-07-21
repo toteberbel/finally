@@ -64,6 +64,7 @@ const ContendorImagen = styled.div`
   margin: 0.5rem 0;
   img {
     border-radius: 1rem;
+    border: 1px solid #eaeaea;
   }
   @media (max-width: 576px) {
     img {
@@ -140,7 +141,14 @@ const CardClases = ({ anuncio, idUsuario }) => {
           </div>
           <div className="col-5 col-md-4 mb-4 text-center pl-0">
             <ContendorImagen className="mb-4">
-              <img src={urlimagen} />
+              {urlimagen === "" ? (
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/finally-8b306.appspot.com/o/imagenesDesarrollo%2FuserDefault.png?alt=media&token=cea35687-3df4-4c45-be26-4093f34ae20a"
+                  alt="Imagen anuncio de clase"
+                />
+              ) : (
+                <img src={urlimagen} alt="Imagen anuncio de clase" />
+              )}
             </ContendorImagen>
             <InputColapso
               className="d-block"

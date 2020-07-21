@@ -3,11 +3,10 @@ import Layout from "../components/layout/Layout";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import Boton from "../components/ui/Boton";
-import Login from "../components/layout/Login";
 import { FirebaseContext } from "../fb/index";
 
 const FirstContenedor = styled.div`
-  background-image: url("/static/img/chicaestudia2.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/finally-8b306.appspot.com/o/imagenesDesarrollo%2FGrupo%20173.png?alt=media&token=7ec36f8f-9569-4265-87f3-80f4e9bed4a7");
   min-height: 44vh;
 
   i {
@@ -24,7 +23,7 @@ const FirstContenedor = styled.div`
   }
 
   @media (max-width: 450px) {
-    background-size: 30rem 25rem;
+    background-size: 32rem 29rem;
     background-repeat: no-repeat;
     background-position: left bottom;
   }
@@ -37,12 +36,37 @@ const FirstContenedor = styled.div`
 `;
 
 const SecondContenedor = styled.div`
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/finally-8b306.appspot.com/o/imagenesDesarrollo%2FGrupo%20170.png?alt=media&token=3b6f3a43-b3c8-4de7-8a0d-a5e63e5f51ec");
+
+  h2 {
+    color: var(--amarillo1);
+  }
+  @media (max-width: 450px) {
+    background-size: 20rem;
+    background-repeat: no-repeat;
+    background-position: left;
+  }
+  @media (min-width: 450px) {
+    background-size: 32rem;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-bottom: 10rem !important;
+  }
+
+  p {
+    color: var(--azul1);
+    font-size: 1.8rem;
+    font-family: "Montserrat", sans-serif !important;
+  }
+`;
+
+const ThirdContenedor = styled.div`
   background-image: url("/static/img/celumsg2.png");
   min-height: 45vh;
   @media (max-width: 450px) {
-    background-size: 25rem 25rem;
+    background-size: 20rem 23rem;
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: right bottom;
   }
   @media (min-width: 450px) {
     background-size: 30rem 29rem;
@@ -68,14 +92,12 @@ const SecondTitulo = styled.h1`
 
 const Parrafo = styled.p`
   color: var(--azul1);
-  font-weight: bold;
   font-size: 2rem;
   font-family: "Montserrat", sans-serif !important;
 `;
 
 const ParrafoSecond = styled.p`
   color: var(--azul1);
-  font-weight: bold;
   font-size: 1.8rem;
   font-family: "Montserrat", sans-serif !important;
 
@@ -90,8 +112,6 @@ export default function Home() {
   return (
     <Layout>
       <div className="container-fluid principalBody">
-          <Login />
-
         <FirstContenedor className="row pb-2">
           <Titulo className="col-12 mt-4 animate__animated animate__fadeInDown">
             Finales y parciales más amenos
@@ -101,11 +121,15 @@ export default function Home() {
               <div className="col-2 col-lg-4"></div>
               <div className="col-10 col-lg-8 text-right animate__animated animate__fadeInDown mb-5">
                 <Parrafo>
-                  Encuentra personas que rindan el mismo final/parcial que vos o
-                  que cursen en la misma cátedra.
+                  Encuentra{" "}
+                  <strong>
+                    personas que rindan el mismo final/parcial que vos
+                  </strong>{" "}
+                  o que cursen en la misma cátedra.
                 </Parrafo>
                 <Parrafo>
-                  ¿Necesitas clases de apoyo? Entonces busca a tu profesor ideal.
+                  ¿Necesitas clases de apoyo?{" "}
+                  <strong>Entonces busca a tu profe ideal.</strong>
                 </Parrafo>
                 <div className="mt-5">
                   {usuario ? (
@@ -158,7 +182,7 @@ export default function Home() {
           </div>
         </FirstContenedor>
 
-        <SecondContenedor className="row pb-5">
+        <ThirdContenedor className="row  pb-2">
           <div className="col-12  animate__animated animate__fadeInRight ">
             <SecondTitulo className="text-left">
               ¿Que hace <span>finally</span>?
@@ -171,11 +195,31 @@ export default function Home() {
               WhatsApp de cursadas o finales con personas de tu misma facultad.
             </ParrafoSecond>
             <ParrafoSecond>
-              <i className="fas fa-chalkboard-teacher "></i> Encontrar al
-              profesor ideal para tus clases de apoyo.
+              <i className="fas fa-chalkboard-teacher "></i> Encontrar al profe
+              ideal para tus clases de apoyo.
             </ParrafoSecond>
           </div>
           <div className="col-4"></div>
+        </ThirdContenedor>
+        <SecondContenedor className="row  mt-5 pb-5 text-right">
+          <div className="col-4"></div>
+          <div className="col-8">
+            <h2 className="mr-0 mb-0 ">
+              <i className="fas fa-check mr-2"></i> ¿Sos buenx en una materia y te
+              gustaría enseñar?
+            </h2>
+            <h2 className="mr-0">
+              <i className="fas fa-check mr-2"></i> ¿Sos profe?
+            </h2>
+            <p>
+              Entonces publica tu anuncio totalmente <b>GRATIS</b> y espera a
+              ser contactado por unx de lxs miles de estudiantes que buscan
+              aprobar sus materias.
+            </p>
+            <Link  href="/soy-profesor">
+              <Boton className="d-inline-block mt-2" bgColor="true">Publica tu anuncio</Boton>
+            </Link>
+          </div>
         </SecondContenedor>
       </div>
     </Layout>

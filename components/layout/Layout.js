@@ -1,18 +1,14 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
 import Footer from "./Footer";
 import Login from "./Login";
 import Header from "./Header";
 import Container from "./Container";
-import Link from "next/link";
-import { FirebaseContext } from "../../fb";
-
+import Sidebar from '../ui/Sidebar';
 
 const Layout = (props) => {
   let menu = useRef(null);
-
-  const { usuario } = useContext(FirebaseContext);
 
   return (
     <>
@@ -59,7 +55,7 @@ const Layout = (props) => {
         `}
       />
       <Head>
-        {/* <html lagn="es" /> */}
+        {/* <html lang="es" /> */}
         <title> Finally - Grupos de estudio en WhatsApp</title>
         <link rel="shortcut icon" href="/static/img/favicon2.ico" />
         <link
@@ -103,74 +99,10 @@ const Layout = (props) => {
       </Head>
       <Header menu={menu} />
       <div className="d-flex" id="wrapper" ref={menu}>
-        <div id="sidebar-wrapper">
-          <div className="list-group list-group-flush">
-            <Link href="/">
-              <a className="list-group-item itemSidebar list-group-item-action">
-                Home
-              </a>
-            </Link>
-
-            {usuario ? (
-              <>
-                <Link href="buscar-grupo">
-                  <a className="list-group-item itemSidebar list-group-item-action ">
-                    Grupos de WhatsApp
-                  </a>
-                </Link>
-                <Link href="soy-profesor">
-                  <a className="list-group-item itemSidebar list-group-item-action ">
-                    Soy profesor
-                  </a>
-                </Link>
-              </>
-            ) : (
-              <>
-                <a
-                  href="!#"
-                  className="list-group-item itemSidebar list-group-item-action "
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                >
-                  Grupos de WhatsApp
-                </a>
-                <a
-                  href="!#"
-                  className="list-group-item itemSidebar list-group-item-action "
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                >
-                  Soy profesor
-                </a>
-              </>
-            )}
-
-            <Link href="buscar-profesor">
-              <a className="list-group-item itemSidebar list-group-item-action ">
-                Buscar profesor
-              </a>
-            </Link>
-
-            <Link href="/contacto">
-              <a
-                className="list-group-item itemSidebar list-group-item-action"
-              >
-                Contacto
-              </a>
-            </Link>
-
-            {/* 
-            <a
-              href="#"
-              className="list-group-item list-group-item-action"
-            >
-              Status
-            </a> */}
-          </div>
-        </div>
+        <Sidebar />
 
         <Container id="page-content-wrapper bg-light">
-          {/* <Login /> */}
+
           <main>{props.children}</main>
         </Container>
       </div>

@@ -39,17 +39,18 @@ const Terminos = () => {
               condiciones bajo los cuales tu puedes usar nuestra página web y
               servicios ofrecidos por nosotros. Esta página web ofrece a los
               visitantes poder unirse a grupos de WhatsApp&#169; creados para
-              compartir información útil entre estudiantes. Al acceder o usar la
-              página web de nuestro servicio, usted aprueba que haya leído,
-              entendido y aceptado estar sujeto a estos Términos:
+              compartir información útil entre estudiantes y para que profesores
+              y estudiantes puedan encontrarse en un mismo lugar. Al acceder o
+              usar la página web de nuestro servicio, usted aprueba que haya
+              leído, entendido y aceptado estar sujeto a estos Términos:
             </p>
             <ul>
               <li>
                 Para usar nuestra página web y / o recibir nuestros servicios,
                 <b>
                   {" "}
-                  debes ser profesor y/o estudiante registrado en la Universidad Nacional del
-                  Comahue,
+                  debes ser profesor y/o estudiante registrado en la Universidad
+                  Nacional del Comahue,
                 </b>{" "}
                 poseer la autoridad legal, el derecho y la libertad para
                 participar en estos Términos como un acuerdo vinculante. No
@@ -72,7 +73,7 @@ const Terminos = () => {
                 patentes, marcas registradas, marcas de servicio, derechos de
                 autor, fotografías, audio, videos, música y todos los Derechos
                 de Propiedad Intelectual relacionados con ellos, son la
-                propiedad exclusiva de [Nombre del propietario dela página web].
+                propiedad exclusiva de Rodrigo Nahuel Berbel.
                 Salvo que se indique explícitamente en este documento, no se
                 considerará que nada en estos Términos crea una licencia en o
                 bajo ninguno de dichos Derechos de Propiedad Intelectual, y tu

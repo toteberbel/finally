@@ -2,7 +2,7 @@ export default function validarCrearAnuncio(datos) {
     let errores = {
     };
 
-    if (datos.telefono === 0) {
+    if (datos.telefono === "") {
         errores.telefono = "Debes añadir un teléfono para que puedan contactarte"
     }
 
